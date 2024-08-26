@@ -24,3 +24,5 @@ ex_aequo_base-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+tags
+.local/
