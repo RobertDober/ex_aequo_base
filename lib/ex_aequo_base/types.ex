@@ -5,6 +5,8 @@ defmodule ExAequoBase.Types do
 
   defmacro __using__(_opts \\ []) do
     quote do
+      @type atoms :: list(atom())
+
       @type binaries :: list(binary())
 
       @type either(lt, rt) :: {:ok, lt} | {:error, rt}
