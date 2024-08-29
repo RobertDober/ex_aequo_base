@@ -25,6 +25,13 @@ defmodule ExAequoBase.Types do
       @type ok_t(t) :: {:ok, t}
       @type ok_t :: {:ok, any()}
 
+      @type pair_t :: {any(), any()}
+      @type pair_t(t) :: {t, t}
+      @type pair_t(lt, rt) :: {lt, rt}
+      @type pairs_t ::  list({any(), any()})
+      @type pairs_t(t) ::  list({t, t})
+      @type pairs_t(lt, rt) ::  list({lt, rt})
+
       @type reducer_result_t :: {:halt, error_t()} | {:cont, ok_t()}
       @type result_fun_t() :: ((any) -> result_t())
       @type result_fun_t(t) :: ((any) -> result_t(t))

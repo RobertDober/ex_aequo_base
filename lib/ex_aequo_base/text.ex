@@ -66,6 +66,11 @@ defmodule ExAequoBase.Text do
       iex(9)> parse_up_to("hello  world", ~r/\s+/, :include)
       {"hello  ", "world"}
 
+    If no match nil is returned
+
+      iex(10)> parse_up_to("hi there", ~r/\d+/)
+      nil
+
   """
   @spec parse_up_to(binary(), binary()|Regex.t(), atom()) :: maybe({binary(), binary()})
   def parse_up_to(input, delim, option \\ nil)
