@@ -4,6 +4,28 @@ defmodule ExAequoBase.Text do
   Text based tools
   """
 
+  @doc ~S"""
+    Parses an input string up to a given string, returnig prefix and suffix
+
+      iex(1)> parse_up_to("hello world", " ")
+      {"hello", "world"}
+
+    We can also use regular expressions
+
+      iex(2)> parse_up_to("hello  world", ~r/\s+/)
+      {"hello", "world"}
+
+    We can decide to keep the string we parse up to
+
+      iex(3)> parse_up_to("hello  world", ~r/\s+/, :keep)
+      {"hello", "  world"}
+
+    Or to include it into the macth
+
+      iex(4)> parse_up_to("hello  world", ~r/\s+/, :include)
+      {"hello  ", "world"}
+
+  """
   @spec parse_up_to(binary(), binary()|Regex.t(), atom()) :: maybe({binary(), binary()})
   def parse_up_to(input, delim, option \\ nil)
   def parse_up_to(input, delim, option) do

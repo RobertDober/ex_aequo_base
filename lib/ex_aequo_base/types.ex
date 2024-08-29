@@ -9,17 +9,26 @@ defmodule ExAequoBase.Types do
 
       @type binaries :: list(binary())
 
-      @type either(lt, rt) :: {:ok, lt} | {:error, rt}
+      @type either(lt, rt) :: ok_t(lt) | error_t(rt) 
+      @type error_t(t) :: {:error, t}
+      @type error_t :: {:error, binary()}
 
       @type input_source_t :: Enumerable.t() | binary() | binaries()
 
       @type maybe(t) :: nil | t
 
       @type natural :: non_neg_integer()
-      @type numbered(t) :: {t, natural()}
+      @type numbered(t) :: {t, number()}
       @type numbered_line_t :: numbered(binary())
       @type numbered_lines_t :: list(numbered_line_t())
 
+      @type ok_t(t) :: {:ok, t}
+      @type ok_t :: {:ok, any()}
+
+      @type reducer_result_t :: {:halt, error_t()} | {:cont, ok_t()}
+      @type result_fun_t() :: ((any) -> result_t())
+      @type result_fun_t(t) :: ((any) -> result_t(t))
+      @type result_t :: either(any(), binary())
       @type result_t(t) :: either(t, binary())
 
       @type stream_t :: %IO.Stream{} | %File.Stream{}
