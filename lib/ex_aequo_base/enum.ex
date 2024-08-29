@@ -24,6 +24,11 @@ defmodule ExAequoBase.Enum do
       ...(4)> CaseClauseError,
       ...(4)>fn -> map_ok(0..2, fn x -> if rem(x, 2) == 0, do: {:ok, x} end) end)
 
+  of course, errors are stll handled the same
+
+      iex(5)> map_ok(0..2, fn x -> if rem(x, 2) == 0, do: {:ok, x + 1}, else: {:error, "not even even"} end, true)
+      {:error, "not even even"}
+
   """
   @spec map_ok(Enumerable.t(), result_fun_t(), boolean()) :: result_t()
   def map_ok(enum, fun, nil_is_error \\ false) do

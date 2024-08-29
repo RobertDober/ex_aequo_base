@@ -5,24 +5,65 @@ defmodule ExAequoBase.Text do
   """
 
   @doc ~S"""
+  Removes a prefix (only if matching), or a given count of graphemes from
+  the front of a string
+
+      iex(1)> behead("abc", "a")
+      "bc"
+
+      
+      iex(2)> behead("abc", 2)
+      "c"
+
+      iex(3)> behead("abc", 0)
+      "abc"
+
+  But 
+
+      iex(4)> assert_raise(
+      ...(4)>   ExAequoBase.Text.Error,
+      ...(4)>   fn -> behead("abc", "b")
+      ...(4)> end)
+      
+
+      iex(5)> assert_raise(
+      ...(5)>   FunctionClauseError,
+      ...(5)>   fn -> behead("abc", -1)
+      ...(5)> end)
+
+  """
+  @spec behead(binary(), binary() | natural()) :: binary()
+  def behead(string, by_string_or_length)
+  def behead(string, by) when is_binary(by) do
+    if String.starts_with?(string, by) do
+      String.slice(string, String.length(by)..-1//1)
+    else
+      raise ExAequoBase.Text.Error, "must not remove missmatched prefix #{by} from #{string}"
+    end
+  end
+  def behead(string, by) when is_integer(by) and by >= 0 do
+    String.slice(string, by..-1//1)
+  end
+
+  @doc ~S"""
     Parses an input string up to a given string, returnig prefix and suffix
 
-      iex(1)> parse_up_to("hello world", " ")
+      iex(6)> parse_up_to("hello world", " ")
       {"hello", "world"}
 
     We can also use regular expressions
 
-      iex(2)> parse_up_to("hello  world", ~r/\s+/)
+      iex(7)> parse_up_to("hello  world", ~r/\s+/)
       {"hello", "world"}
 
     We can decide to keep the string we parse up to
 
-      iex(3)> parse_up_to("hello  world", ~r/\s+/, :keep)
+      iex(8)> parse_up_to("hello  world", ~r/\s+/, :keep)
       {"hello", "  world"}
 
     Or to include it into the macth
 
-      iex(4)> parse_up_to("hello  world", ~r/\s+/, :include)
+      iex(9)> parse_up_to("hello  world", ~r/\s+/, :include)
       {"hello  ", "world"}
 
   """
