@@ -1,6 +1,6 @@
 defmodule ExAequoBase.MixProject do
   use Mix.Project
-  @version "0.1.4"
+  @version "0.1.5-pre"
   @url "https://github.com/RobertDober/ex_aequo_base"
 
   def project do
