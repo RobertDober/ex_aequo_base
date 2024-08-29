@@ -32,6 +32,9 @@ defmodule ExAequoBase.Types do
       @type result_t(t) :: either(t, binary())
 
       @type stream_t :: %IO.Stream{} | %File.Stream{}
+
+      @type zero_fn_t :: (-> any())
+      @type zero_fn_t(t) :: (-> t )
     end
   end
 
