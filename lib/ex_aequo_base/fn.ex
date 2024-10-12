@@ -27,7 +27,6 @@ defmodule ExAequoBase.Fn do
       {:error, "No functions matched"}
 
   """
-
   @spec select(list(zero_fn_t())) :: any()
   def select(functions)
   def select([]) do

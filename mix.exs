@@ -1,6 +1,6 @@
 defmodule ExAequoBase.MixProject do
   use Mix.Project
-  @version "0.1.5-pre"
+  @version "0.1.5"
   @url "https://github.com/RobertDober/ex_aequo_base"
 
   def project do
@@ -35,6 +35,7 @@ defmodule ExAequoBase.MixProject do
   defp deps do
     [
       {:dialyxir, "~> 1.4.3", only: [:dev], runtime: false},
+      {:ex_aequo_fn, "~> 0.1.2"},
       {:excoveralls, "~> 0.18.2", only: [:test]},
     ]
   end

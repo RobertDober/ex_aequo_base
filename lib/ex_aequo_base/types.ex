@@ -33,6 +33,11 @@ defmodule ExAequoBase.Types do
       @type pairs_t(lt, rt) ::  list(pair_t(lt, rt))
 
       @type reducer_result_t :: {:halt, error_t()} | {:cont, ok_t()}
+
+      @type parser_fn :: ((binary()) -> any())
+      @type rgx_pair :: {Regex.t(), ExAequoFn.NamedFn.t()}
+      @type rgx_pairs :: list(rgx_pair())
+
       @type result_fun_t() :: ((any) -> result_t())
       @type result_fun_t(t) :: ((any) -> result_t(t))
       @type result_t :: either(any(), binary())
