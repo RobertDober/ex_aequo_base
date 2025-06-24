@@ -64,19 +64,19 @@ defmodule Test.Text.ParseUpToTest do
     end
   end
 
-  @digits ~r/\d+/
+  defp digits, do: ~r/\d+/
   describe "regex delimiters" do
     test "no match" do
-      assert parse_up_to("", @digits) == nil
+      assert parse_up_to("", digits()) == nil
     end
     test "do not keep or include" do
-      assert parse_up_to("a9b", @digits) == {"a", "b"}  
+      assert parse_up_to("a9b", digits()) == {"a", "b"}  
     end
     test "include" do
-      assert parse_up_to("a90b", @digits, :include) == {"a90", "b"}  
+      assert parse_up_to("a90b", digits(), :include) == {"a90", "b"}  
     end
     test "keep" do
-      assert parse_up_to("a90b", @digits, :keep) == {"a", "90b"}  
+      assert parse_up_to("a90b", digits(), :keep) == {"a", "90b"}  
     end
   end
 

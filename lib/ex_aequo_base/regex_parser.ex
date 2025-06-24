@@ -2,7 +2,7 @@ defmodule ExAequoBase.RegexParser do
   use ExAequoBase.Types
 
   alias ExAequoFn.NamedFn
-  import NamedFn, only: [call: 2, new: 2]
+  import ExAequoFn.NamedFn, only: [call: 2, new: 2]
   alias __MODULE__.Error
 
   @moduledoc ~S"""

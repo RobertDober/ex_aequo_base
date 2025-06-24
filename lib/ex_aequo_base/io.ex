@@ -4,7 +4,7 @@ defmodule ExAequoBase.Io do
   Transform input from files, stdin, or binaries
   """
 
-  @line_break ~r/\n\r?/u
+  defp line_break, do: ~r/\n\r?/u
 
   @doc ~S"""
 
@@ -48,7 +48,7 @@ defmodule ExAequoBase.Io do
   def numbered_lines_stream("", _initial_lnb), do: []
   def numbered_lines_stream(string, initial_lnb) when is_binary(string) do
     string
-    |> String.split(@line_break) 
+    |> String.split(line_break()) 
     |> _zip_with_numbers(initial_lnb) 
   end
   def numbered_lines_stream(%File.Stream{}=stream, initial_lnb) do
@@ -61,7 +61,7 @@ defmodule ExAequoBase.Io do
   @spec _numbered_from_stream(stream_t(), number()) :: Enumerable.t()
   defp _numbered_from_stream(stream, initial_lnb) do
     stream
-    |> Stream.map(fn line -> Regex.replace(@line_break, line, "") end) 
+    |> Stream.map(fn line -> Regex.replace(line_break(), line, "") end) 
     |> _zip_with_numbers(initial_lnb) 
   end
 
